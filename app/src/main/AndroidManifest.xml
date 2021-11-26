@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ff.appscriptjava">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppScriptJava">
+
+        <meta-data
+            android:name="com.google.android.apps.docs.editors.docs.TEXT_SELECTION"
+            android:value="com.ff.appscriptjava.MainActivity" />
+
+        <meta-data
+            android:name="com.google.android.apps.docs.editors.sheets.RANGE_SELECTION"
+            android:value="com.ff.appscriptjava.TextActivity" />
+        <meta-data
+            android:name="com.google.android.apps.docs.editors.sheets.ROW_SELECTION"
+            android:value="com.ff.appscriptjava.MainActivity" />
+        <meta-data
+            android:name="com.google.android.apps.docs.editors.sheets.COLUMN_SELECTION"
+            android:value="com.ff.appscriptjava.MainActivity" />
+
+        <activity
+            android:name=".DefaultLaunchActivity"
+            android:label="@string/app_name"
+            android:exported="true" >
+            <intent-filter>
+                <!-- This intent filter sets DefaultLaunchActivity as the entry
+                     point when the add-on is launched directly (and erroneously).
+                     -->
+                <action android:name="com.google.android.apps.docs.editors.sheets.ADDON" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="locked"
+            android:exported="true">
+            <intent-filter
+                android:icon="@mipmap/ic_launcher">
+                <!-- This intent filter is what allows the app to be called as
+                     an add-on from the Docs editor. -->
+                <action android:name="com.google.android.apps.docs.editors.sheets.ADDON" />
+                <action android:name="com.google.android.apps.docs.editors.docs.ADDON" />
+            </intent-filter>
+        </activity>
+        <!-- This alias allows the MainActivity to appear in the main Add-on
+           menus in the Docs and Sheets editors as well as the context
+           menu. -->
+        <activity-alias
+            android:name=".MainActivityAlias"
+            android:targetActivity=".MainActivity"
+            android:label="@string/app_name"
+            android:exported="true" >
+            <intent-filter
+                android:icon="@mipmap/ic_launcher" >
+                <action android:name="com.google.android.apps.docs.editors.sheets.ADDON" />
+                <action android:name="com.google.android.apps.docs.editors.docs.ADDON" />
+            </intent-filter>
+        </activity-alias>
+
+    </application>
+
+</manifest>
